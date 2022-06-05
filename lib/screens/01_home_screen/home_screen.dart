@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_trivia/screens/question_screen.dart';
-import 'package:project_trivia/screens/style.dart';
+import 'package:project_trivia/constant/values/values.dart';
+import 'package:project_trivia/screens/02_questions_screen/question_screen.dart';
+import 'package:project_trivia/constant/style/style.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,13 +13,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Center(
           child: Container(
-            width: screenSize.width,
+            width: screenSize(context).width,
             height: 300,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),

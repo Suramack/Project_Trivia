@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_trivia/screens/home_screen.dart';
+import 'package:project_trivia/screens/01_home_screen/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'Trivia',
+      theme: ThemeData(),
       home: const HomeScreen(),
     );
   }

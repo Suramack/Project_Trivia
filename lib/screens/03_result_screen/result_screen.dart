@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:project_trivia/screens/home_screen.dart';
-import 'package:project_trivia/screens/question_screen.dart';
-import 'package:project_trivia/screens/style.dart';
+import 'package:get/get.dart';
+import 'package:project_trivia/controller/questions_view_controller.dart';
+import 'package:project_trivia/screens/01_home_screen/home_screen.dart';
+import 'package:project_trivia/screens/02_questions_screen/question_screen.dart';
+import 'package:project_trivia/constant/style/style.dart';
 
 class ScoreScreen extends StatefulWidget {
   const ScoreScreen({Key? key}) : super(key: key);
@@ -10,12 +12,9 @@ class ScoreScreen extends StatefulWidget {
   _ScoreScreenState createState() => _ScoreScreenState();
 }
 
-int totalPoint = 0;
-void getTotalPoint(int value) {
-  totalPoint = value;
-}
-
 class _ScoreScreenState extends State<ScoreScreen> {
+  final questionsViewController = Get.put(QuestionsViewController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,9 +46,13 @@ class _ScoreScreenState extends State<ScoreScreen> {
                     'SCORE',
                     style: scoreTextStyle(),
                   ),
-                  Text(
-                    totalPoint.toString(),
-                    style: pointTextStyle(),
+                  GetBuilder<QuestionsViewController>(
+                    builder: (_) {
+                      return Text(
+                        questionsViewController.points.toString(),
+                        style: pointTextStyle(),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -70,12 +73,12 @@ class _ScoreScreenState extends State<ScoreScreen> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        (MaterialPageRoute(
-                          builder: (context) => const HomeScreen(),
-                        )),
-                        (route) => false);
+                    Navigator.pushReplacement(
+                      context,
+                      (MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      )),
+                    );
                   },
                   child: const Text('Go Home'),
                 ),
@@ -91,12 +94,12 @@ class _ScoreScreenState extends State<ScoreScreen> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        (MaterialPageRoute(
-                          builder: (context) => const QuestionScreen(),
-                        )),
-                        (route) => false);
+                    Navigator.pushReplacement(
+                      context,
+                      (MaterialPageRoute(
+                        builder: (context) => const QuestionScreen(),
+                      )),
+                    );
                   },
                   child: const Text('Retake TRIVIA'),
                 ),
